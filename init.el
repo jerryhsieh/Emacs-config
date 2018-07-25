@@ -17,7 +17,8 @@
 ;; custome variable path
 ;;
 (setq custom-file "~/.emacs.d/custom-variables.el")
-(load custom-file)
+(when (file-exists-p custom-file)
+    (load custom-file))
 
 
 ;;
@@ -71,5 +72,37 @@
          :map ctl-x-map
          ("\C-m" . mc/mark-all-dwim)
          ("<return>" . mule-keymap)
-         )
+         ))
+
+;;
+;; ivy mode
+;;
+(use-package ivy
+  :ensure t
+  :diminish (ivy-mode . "")
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virutal-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-height 10)
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-count-format "%d/%d")
+  (setq ivy-re-builders-alist
+        `((t . ivy--regex-ignore-order)))
+  )
+
+;;
+;; counsel
+;;
+(use-package counsel
+  :ensure t
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)))
+
+;;
+;; swiper
+;;
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper))
   )
