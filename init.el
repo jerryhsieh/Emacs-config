@@ -106,3 +106,15 @@
   :ensure t
   :bind (("C-s" . swiper))
   )
+
+;;
+;; yasnippet
+;;
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode)
+  (use-package yasnippet-snippets :ensure t)
+  )
+
+
