@@ -1,3 +1,9 @@
+;;; package --- Summary
+;;
+;;; Commentary:
+;;;
+;;; Code:
+
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -155,5 +161,17 @@
                                                          (yas-expand))))
 
 
+;;
+;; flycheck
+;;
 
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t)
+  )
+
+
+(provide 'init)
+;;; init.el ends here
 
