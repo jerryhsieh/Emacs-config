@@ -171,6 +171,15 @@
   (global-flycheck-mode t)
   )
 
+;;
+;; magit
+;;
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status))
+  )
+
+
 
 (provide 'init)
 ;;; init.el ends here
