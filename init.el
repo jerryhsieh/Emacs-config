@@ -180,6 +180,21 @@
   )
 
 
+;;
+;; projectile
+;;
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode t)
+  (setq projectile-completion-system 'ivy)
+  (use-package counsel-projectile
+    :ensure t)
+  )
+
+
+(use-package ag
+  :ensure t)
 
 (provide 'init)
 ;;; init.el ends here
