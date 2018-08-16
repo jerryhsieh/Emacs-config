@@ -185,6 +185,8 @@
 ;;
 (use-package projectile
   :ensure t
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
   :config
   (projectile-mode t)
   (setq projectile-completion-system 'ivy)
@@ -195,6 +197,26 @@
 
 (use-package ag
   :ensure t)
+
+
+;;
+;; auto insert
+;;
+(use-package autoinsert
+  :ensure t
+  :config
+  (setq auto-insert-query nil)
+  (setq auto-insert-directory (locate-user-emacs-file "template"))
+  (add-hook 'find-file-hook 'auto-insert)
+  (auto-insert-mode t)
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;                c/c++                ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "~/.emacs.d/custom/c.el")
+
 
 (provide 'init)
 ;;; init.el ends here
