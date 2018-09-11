@@ -1,10 +1,11 @@
 ;;; python.el --- python related                     -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018  vagrant
+;;; Commentary:
 
 ;; Author: vagrant <vagrant@node1.onionstudio.com.tw>
 ;; Keywords: languages, abbrev
-
+;;; Code:
 
 (use-package python
   :ensure t
@@ -39,3 +40,6 @@
   :config
   (setq elpy-rpc-backend "jedi")
   )
+
+(provide 'python)
+;;; python.el ends here

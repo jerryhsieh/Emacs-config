@@ -7,6 +7,13 @@
 
 ;;; Code:
 
+
+;;
+;; irony is for auto-complete, syntax checking and documentation
+;;
+;; You will need to install irony-server first time use
+;; to install irony-server, your system need to install clang, cmake and clang-devel in advance
+;;
 (use-package irony
   :ensure t
   :hook ((c++-mode . irony-mode)
@@ -33,6 +40,14 @@
   )
 
 
+;;
+;; rtags enable jump-to-function definition
+;; system need to install rtags first
+;;
+;; for centos, you need llvm-devel, cppunit-devl
+;; install gcc-4.9, cmake 3.1 and download rtags from github and make it
+;;
+
 (use-package rtags
   :ensure t
   :config
@@ -46,7 +61,9 @@
     (function rtags-find-references-at-point))
   )
 
-
+;;
+;; cmake-ide enable rdm(rtags) auto start and rc(rtags) to watch directory
+;;
 (use-package cmake-ide
   :ensure t
   :config
