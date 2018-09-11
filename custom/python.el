@@ -7,6 +7,10 @@
 ;; Keywords: languages, abbrev
 ;;; Code:
 
+
+;;
+;; need pip install autopep8, flake8, jedi and elpy
+;;
 (use-package python
   :ensure t
   :mode ("\\.py\\'" . python-mode)
