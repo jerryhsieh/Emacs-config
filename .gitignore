@@ -1,1 +1,7 @@
 /test/
+.python-environments
+/%backup%~
+/.last-package-update-day
+/tramp
+elpa
+irony

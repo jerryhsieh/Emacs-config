@@ -1,0 +1,13 @@
+#+OPTIONS: reveal_title_slide: "<h2>%t</h2><h3>%a</h3>"
+#+OPTIONS: toc:nil num:nil todo:nil pri:nil tags:nil ^:nil
+#+CATEGORY: $1
+#+TAGS: $2
+#+REVEAL_ROOT: http://cdn.jsdelivr.net/npm/reveal.js@3.6.0/
+#+REVEAL_THEME: moon
+#+REVEAL_MATHJAX_URL: https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+TITLE: $3
+#+AUTHOR: `user-full-name`
+#+DATE: `(format-time-string "%Y-%m-%d")`
+#+LATEX_HEADER: \usepackage{ctex}
+#+LATEX_COMPILER: xelatex
+$0

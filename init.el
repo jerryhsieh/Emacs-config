@@ -7,6 +7,7 @@
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 (package-initialize)
 
@@ -202,13 +203,18 @@
 ;;
 ;; auto insert
 ;;
+(defun my/autoinsert-yas-expand()
+  "replace text in yasnippet template"
+  (yas-expand-snippet (buffer-string) (point-min) (point-max)))
+
 (use-package autoinsert
   :ensure t
   :config
   (setq auto-insert-query nil)
-  (setq auto-insert-directory (locate-user-emacs-file "template"))
+  (setq auto-insert-directory (locate-user-emacs-file "templates"))
   (add-hook 'find-file-hook 'auto-insert)
   (auto-insert-mode t)
+  (define-auto-insert "\\.org$" ["default-org.org" my/autoinsert-yas-expand])
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -233,6 +239,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "~/.emacs.d/custom/go.el")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;                 org                 ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(load "~/.emacs.d/custom/org.el")
 
 (provide 'init)
 ;;; init.el ends here
