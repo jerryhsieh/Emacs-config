@@ -1,7 +1,14 @@
 /test/
+<<<<<<< HEAD
 .python-environments
 /%backup%~
 /.last-package-update-day
 /tramp
 elpa
 irony
+=======
+elpa
+snippets
+.last-package-update-day
+bookmarks
+>>>>>>> 0f2934e... add org-setup
