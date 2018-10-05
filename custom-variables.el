@@ -33,9 +33,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/org/gtd.org" "~/org/gcal.org")))
  '(package-selected-packages
    (quote
-    (counsel-projectile org-bullets org org2blog org-download company-web ox-reveal go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
+    (robe projectile-rails rubocop ruby-electric org-gcal counsel-projectile org-bullets org org2blog org-download company-web ox-reveal go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

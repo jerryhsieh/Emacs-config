@@ -1,1 +1,1 @@
-("~/.emacs.d/")
+("~/Developer/VM/chefdk/" "~/.emacs.d/")
