@@ -25,7 +25,7 @@
 ;;; Code:
 (use-package web-mode
   :ensure t
-  :mode "\\.html\\'"
+  :mode ("\\.html\\'" "\\.vue\\'" "\\.jsx\\'")
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -35,27 +35,72 @@
   (set-face-attribute 'web-mode-html-tag-face nil :foreground "royalblue")
   (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "powderblue")
   (set-face-attribute 'web-mode-doctype-face nil :foreground "lightskyblue")
+  (setq web-mode-content-types-alist
+        '(("vue" . "\\.vue\\'")
+          ("jsx" . "\\.jsx\\'")
+          ))
   (use-package company-web
     :ensure t
     :config
     (add-hook 'web-mode-hook (lambda ()
                                (cond ((equal web-mode-content-type "html")
-                                      (web-html-setup)))))
-
+                                      (my/web-html-setup))
+                                     ((equal web-mode-content-type "vue")
+                                      (my/web-vue-setup))
+                                     ((equal web-mode-content-type "jsx")
+                                      (my/web-jsx-setup))
+                                     )))
     )
   )
 
 ;;
 ;; html
 ;;
-(defun web-html-setup()
-  ;; for web-mode html files
+(defun my/web-html-setup()
+  "Setup for web-mode html files."
   (flycheck-add-mode 'html-tidy 'web-mode)
   (flycheck-select-checker 'html-tidy)
   (add-to-list (make-local-variable 'company-backends)
                '(company-web-html company-files company-css company-capf company-dabbrev))
   (add-hook 'before-save-hook #'sgml-pretty-print)
 
+  )
+
+;;
+;; vue
+;;
+(defun my/web-vue-setup()
+  "Setup for vue related."
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (my/use-eslint-from-node-modules)
+  (flycheck-select-checker 'javascript-eslint)
+  (flycheck-mode)
+  (add-hook 'web-mode-hook #'setup-tide-mode)
+  (add-hook 'web-mode-hook #'prettier-js-mode)
+  )
+
+;;
+;; jsx
+;;
+(defun my/web-jsx-setup()
+  "Setup for jsx related."
+  )
+
+
+
+;;
+;; eslint use local
+;;
+(defun my/use-eslint-from-node-modules()
+  "Use local eslint from node_modules before global."
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js" root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))
+    )
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
