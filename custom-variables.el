@@ -1,8 +1,7 @@
 ;;; custom-variables.el --- custom variables         -*- lexical-binding: t; -*-
-
 ;; Copyright (C) 2018  Jerry Hsieh
-
 ;; Author: Jerry Hsieh <jerryhsieh@Jerryde-MacBook-Pro.local>
+
 ;; Keywords: lisp
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -33,10 +32,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/org/gtd.org" "~/org/gcal.org")))
+ '(org-agenda-files (quote ("~/org/gtd.org")))
  '(package-selected-packages
    (quote
-    (robe projectile-rails rubocop ruby-electric org-gcal counsel-projectile org-bullets org org2blog org-download company-web ox-reveal go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
+    (org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

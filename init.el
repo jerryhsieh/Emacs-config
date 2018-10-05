@@ -7,7 +7,7 @@
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 
 (package-initialize)
 
@@ -207,6 +207,7 @@
   "replace text in yasnippet template"
   (yas-expand-snippet (buffer-string) (point-min) (point-max)))
 
+
 (use-package autoinsert
   :ensure t
   :config
@@ -215,6 +216,7 @@
   (add-hook 'find-file-hook 'auto-insert)
   (auto-insert-mode t)
   (define-auto-insert "\\.org$" ["default-org.org" my/autoinsert-yas-expand])
+
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -240,6 +242,7 @@
 (load "~/.emacs.d/custom/go.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
                                         ;                 ruby                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "~/.emacs.d/custom/ruby.el")

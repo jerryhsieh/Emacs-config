@@ -1,9 +1,8 @@
 ;;; org.el --- org mode related                      -*- lexical-binding: t; -*-
-
 ;; Copyright (C) 2018  Jerry Hsieh
-
 ;; Author: Jerry Hsieh <jerryhsieh@Jerryde-MacBook-Pro.local>
 ;; Keywords: calendar, processes
+
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,8 +22,7 @@
 ;; 
 
 ;;; Code:
-(org-babel-load-file "~/org/Channel/emacs-org.org")
-
+(org-babel-load-file "~/.emacs.d/custom/org-setup.org")
 
 
 (provide 'org)

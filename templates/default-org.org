@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #+OPTIONS: reveal_title_slide: "<h2>%t</h2><h3>%a</h3>"
+=======
+#+OPTIONS: reveal_title_slide:"<h2>%t</h2><h3>%a</h3>"
+>>>>>>> 0f2934eb889601d8bb61b6472442744ffd4e08d7
 #+OPTIONS: toc:nil num:nil todo:nil pri:nil tags:nil ^:nil
 #+CATEGORY: $1
 #+TAGS: $2
@@ -8,6 +12,9 @@
 #+TITLE: $3
 #+AUTHOR: `user-full-name`
 #+DATE: `(format-time-string "%Y-%m-%d")`
+<<<<<<< HEAD
 #+LATEX_HEADER: \usepackage{ctex}
+=======
+>>>>>>> 0f2934eb889601d8bb61b6472442744ffd4e08d7
 #+LATEX_COMPILER: xelatex
 $0
