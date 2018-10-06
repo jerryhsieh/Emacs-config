@@ -1,14 +1,8 @@
 ;;; custom-variables.el --- custom variables         -*- lexical-binding: t; -*-
 
-<<<<<<< HEAD
 ;; Copyright (C) 2018  Jerry Hsieh
 
 ;; Author: Jerry Hsieh <jerryhsieh@Jerryde-MacBook-Pro.local>
-=======
-;; Copyright (C) 2018  vagrant
-
-;; Author: vagrant <vagrant@node4.onionstudio.com.tw>
->>>>>>> 0f2934e... add org-setup
 ;; Keywords: lisp
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -48,8 +42,13 @@
  '(org-agenda-files (quote ("~/org/gtd.org")))
  '(package-selected-packages
    (quote
+<<<<<<< HEAD
     (org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
 >>>>>>> 0f2934e... add org-setup
+=======
+    (rjsx-mode rxjs-mode org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
+
+>>>>>>> 543d9bf... add react rjsx-mode
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
