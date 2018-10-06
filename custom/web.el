@@ -37,20 +37,17 @@
   (set-face-attribute 'web-mode-doctype-face nil :foreground "lightskyblue")
   (setq web-mode-content-types-alist
         '(("vue" . "\\.vue\\'")
-          ("jsx" . "\\.jsx\\'")
-          ))
+          ("javascript" . "\\.jsx\\'")))
   (use-package company-web
-    :ensure t
-    :config
-    (add-hook 'web-mode-hook (lambda ()
-                               (cond ((equal web-mode-content-type "html")
-                                      (my/web-html-setup))
-                                     ((equal web-mode-content-type "vue")
-                                      (my/web-vue-setup))
-                                     ((equal web-mode-content-type "jsx")
-                                      (my/web-jsx-setup))
-                                     )))
-    )
+    :ensure t)
+  (add-hook 'web-mode-hook (lambda()
+                             (cond ((equal web-mode-content-type "html")
+                                    (my/web-html-setup))
+                                   ((equal web-mode-content-type "vue")
+                                    (my/web-vue-setup))
+                                   ((equal web-mode-content-type "javascript")
+                                    (my/web-jsx-setup))
+                                   )))
   )
 
 ;;
@@ -58,6 +55,7 @@
 ;;
 (defun my/web-html-setup()
   "Setup for web-mode html files."
+  (message "in web html setup")
   (flycheck-add-mode 'html-tidy 'web-mode)
   (flycheck-select-checker 'html-tidy)
   (add-to-list (make-local-variable 'company-backends)
@@ -71,19 +69,24 @@
 ;;
 (defun my/web-vue-setup()
   "Setup for vue related."
+  (message "in web vue setup")
+  (setup-tide-mode)
+  (prettier-js-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (my/use-eslint-from-node-modules)
   (flycheck-select-checker 'javascript-eslint)
-  (flycheck-mode)
-  (add-hook 'web-mode-hook #'setup-tide-mode)
-  (add-hook 'web-mode-hook #'prettier-js-mode)
   )
 
 ;;
-;; jsx
+;; javascript
 ;;
 (defun my/web-jsx-setup()
   "Setup for jsx related."
+  (setup-tide-mode)
+  (prettier-js-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-select-checker 'javascript-eslint)
+  ;;(flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
+  ;;(setq flycheck-disabled-checkers (append flycheck-disabled-checkers '(tsx-tide)))
   )
 
 
@@ -91,17 +94,29 @@
 ;;
 ;; eslint use local
 ;;
-(defun my/use-eslint-from-node-modules()
+(defun my/use-eslint-from-node-modules ()
   "Use local eslint from node_modules before global."
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
                 "node_modules"))
          (eslint (and root
-                      (expand-file-name "node_modules/eslint/bin/eslint.js" root))))
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
     (when (and eslint (file-executable-p eslint))
-      (setq-local flycheck-javascript-eslint-executable eslint))
-    )
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;                 rjsx                ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package rjsx-mode
+  :ensure t
+  :mode ("\\.js\\'")
+  :config
+  (setq-default js2-basic-offset 2)
   )
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ;                 css                 ;
@@ -130,7 +145,7 @@
 
 (use-package emmet-mode
   :ensure t
-  :hook (web-mode css-mode scss-mode sgml-mode)
+  :hook (web-mode css-mode scss-mode sgml-mode rjsx-mode)
   :config
   (add-hook 'emmet-mode-hook (lambda()
                               (setq emmet-indent-after-insert t)))
@@ -142,16 +157,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package js2-mode
   :ensure t
-  :mode (("\\.js\\'" . js2-mode)
+  :mode (("\\.js2\\'" . js2-mode)
          ("\\.json\\'" . javascript-mode))
   :init
   (setq-default js2-basic-offset 2)
   (setq-default js2-global-externs '("module" "require" "assert" "setInterval" "console" "__dirname__") )
   )
 
-
 (defun setup-tide-mode ()
+  "Setup tide mode for other mode."
   (interactive)
+  (message "setup tide mode")
   (tide-setup)
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
@@ -162,14 +178,15 @@
   ;; `M-x package-install [ret] company`
   (company-mode +1))
 
+
 (add-hook 'js2-mode-hook #'setup-tide-mode)
 
 (use-package tide
   :ensure t
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save))
+         (typescript-mode . tide-hl-identifier-mode))
+         ;;(before-save . tide-format-before-save))
   )
 
 (use-package prettier-js
@@ -181,6 +198,9 @@
                            "--bracket-spacing" "false"
                            ))
   )
+
+
+
 
 (provide 'web)
 ;;; web.el ends here
