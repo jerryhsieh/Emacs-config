@@ -114,6 +114,10 @@
   :ensure t
   :mode ("\\.js\\'")
   :config
+  (add-hook 'rjsx-mode-hook (lambda ()
+                              (add-to-list (make-local-variable 'company-backends)
+                                           '(company-files company-tide))
+                              ))
   (setq-default js2-basic-offset 2)
   )
 
@@ -186,7 +190,9 @@
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode))
-         ;;(before-save . tide-format-before-save))
+  ;;(before-save . tide-format-before-save))
+  :config
+  (setq tide-completion-enable-autoimport-suggestions t)
   )
 
 (use-package prettier-js
