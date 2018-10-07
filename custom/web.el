@@ -121,6 +121,8 @@
   (setq-default js2-basic-offset 2)
   )
 
+(use-package react-snippets
+  :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ;                 css                 ;
