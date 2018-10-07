@@ -43,10 +43,14 @@
  '(package-selected-packages
    (quote
 <<<<<<< HEAD
+<<<<<<< HEAD
     (org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
 >>>>>>> 0f2934e... add org-setup
 =======
     (rjsx-mode rxjs-mode org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
+=======
+    (react-snippets rjsx-mode rxjs-mode org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
+>>>>>>> 957f724... add snippet folder back
 
 >>>>>>> 543d9bf... add react rjsx-mode
 (custom-set-faces
