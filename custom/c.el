@@ -71,5 +71,16 @@
   )
 
 
+;;
+;; for c formatting
+;;
+(use-package clang-format
+  :ensure t
+  :config
+  (setq clang-format-style-option "llvm")
+  (add-hook 'c-mode-hook (lambda() (add-hook 'before-save-hook 'clang-format-buffer)))
+  (add-hook 'c++-mode-hook (lambda() (add-hook 'before-save-hook 'clang-format-buffer)))
+  )
+
 (provide 'c)
 ;;; c.el ends here

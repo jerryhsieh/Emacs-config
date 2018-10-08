@@ -106,6 +106,66 @@
     :ensure t
     )
     #+END_SRC
+* Org youtube link
+  + add embeded youtube
+    #+BEGIN_SRC emacs-lisp
+    ;;
+    ;; org youtube embeded
+    ;;
+    (defvar yt-iframe-format
+    ;;You may want to change your width and height.
+    (concat "<iframe width=\"440\""
+          " height=\"335\""
+          " src=\"https://www.youtube.com/embed/%s\""
+          " frameborder=\"0\""
+          " allowfullscreen>%s</iframe>"))
+    (org-add-link-type
+    "yt"
+    (lambda (handle)
+      (browse-url
+        (concat "https://www.youtube.com/embed/" handle)))
+    (lambda (path desc backend)
+      (cl-case backend
+        (html (format yt-iframe-format path (or desc "")))
+        (latex (format "\href{%s}{%s}" path (or desc "video"))))))
+    #+END_SRC
+* org2blog 直接寫部落格
+  + 因 xml-rpc 不相容於 unicode, 需置換 [[https://github.com/org2blog/org2blog#unicode-character-support][unicode support]]
+  + emacs-lisp 的 syntax highlight 參考 https://vxlabs.com/tag/syntaxhighlighter/
+    + 加入 [[https://github.com/starforgelabs/SyntaxHighlighter-Evolved-LISP-Brush/blob/master/shBrushLisp.js][shBrushLips.js]] 到 ~wp-content/plugins/syntaxhighlighter~
+    + 修改 ~syntaxhighlighter.php~ 插入
+      #+BEGIN_EXAMPLE
+      // ...
+      wp_register_script('syntaxhighlighter-brush-lisp', plugins_url('shBrushLisp.js',__FILE__),array('syntaxhighlighter-core'),'1.0.0');
+      // ...
+      $this->brushes = (array) apply_filters( 'syntaxhighlighter_brushes', array(
+      'as3' => 'as3',
+      <bunch of other aliases>,
+      'lisp' => 'lisp',
+      'emacs-lisp' => 'lisp',
+      #+END_EXAMPLE
+  + 設定
+    #+BEGIN_SRC emacs-lisp
+    (use-package org2blog
+    :ensure t
+    :requires org
+    :init
+    (setq org2blog/wp-blog-alist
+           '(("wordpress"
+           :url "https://jerryhsieh01.wordpress.com/xmlrpc.php"
+           :username "jerryhsieh01"
+           )
+          ("my-blog"
+           :url "https://blog.onionstudio.com.tw/xmlrpc.php"
+           :username "Jerry"
+           )))
+     :config
+     (setq org2blog/wp-use-sourcecode-shortcode t)
+     (setq org2blog/wp-sourcecode-langs 
+          '("sh" "cpp" "css" "js" "javascript" "perl" "php" "python" "ruby" "emacs-lisp" "lisp" "go" "lua"))
+     )
+    #+END_SRC
+
 * Latex 整合
   - characters: \alpha \rightarrow \beta
   - $O(n \log n)$
@@ -156,9 +216,15 @@ irrors/CTAN/systems/texlive/tlnet/
   + 安裝 ~evince~ 在 CentOS 7 下開啟 pdf 檔案
   + 指定程式來開啟檔案
     #+BEGIN_SRC emacs-lisp
-    (setq org-file-apps '((auto-mode . emacs)
+    (cond ((eq system-type 'gnu/linux) 
+           (setq org-file-apps '((auto-mode . emacs)
                           ("\\.pdf\\'" . "evince %s")
-    ))
+                          ("\\.html\\'" . "chrome %s")
+                          )))
+           ((eq system-type 'darwin)
+           (setq org-file-apps '((auto-mode .emacs)
+                          ("\\.pdf\\'" . "open %s")
+                          ("\\.html\\'" . "open %s")))))
     
     #+END_SRC
   + 加入 latex 表頭
@@ -176,6 +242,36 @@ irrors/CTAN/systems/texlive/tlnet/
          " use-font use-font use-font))))
     #+END_SRC
 
+* sync with Google calendar
+  #+BEGIN_SRC emacs-lisp
+  (use-package auth-source
+  :ensure t
+  )
+  (use-package org-gcal
+  :ensure t
+  :config
+  (let (credentials)
+    (add-to-list 'auth-sources "~/.netrc")
+    (setq credentials (auth-source-user-and-password "org-gcal"))
+    (setq org-gcal-client-id (car credentials)
+        org-gcal-client-secret (cadr credentials)
+        org-gcal-file-alist '(("jerryhsieh01@gmail.com" . "~/org/gcal.org"))
+  ))
+  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+;;  (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+  )
+  #+END_SRC
+  + you need to add ~.netrc~ file
+    #+BEGIN_EXAMPLE
+    machine org-gcal client-id xxxx secret yyyy
+    #+END_EXAMPLE
+* Org Reveal
+  + 做簡報
+    #+BEGIN_SRC emacs-lisp
+    (use-package ox-reveal
+    :ensure t
+    )
+    #+END_SRC
 
 
 

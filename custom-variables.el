@@ -35,7 +35,7 @@
  '(org-agenda-files (quote ("~/org/gtd.org")))
  '(package-selected-packages
    (quote
-    (react-snippets rjsx-mode rxjs-mode org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
+    (clang-format rjsx-mode rxjs-mode org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

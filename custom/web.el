@@ -43,10 +43,8 @@
   (add-hook 'web-mode-hook (lambda()
                              (cond ((equal web-mode-content-type "html")
                                     (my/web-html-setup))
-                                   ((equal web-mode-content-type "vue")
-                                    (my/web-vue-setup))
-                                   ((equal web-mode-content-type "javascript")
-                                    (my/web-jsx-setup))
+                                   ((member web-mode-content-type '("vue", "javascript"))
+                                    (my/web-js-setup))
                                    )))
   )
 
@@ -55,7 +53,7 @@
 ;;
 (defun my/web-html-setup()
   "Setup for web-mode html files."
-  (message "in web html setup")
+  (message "web-mode use html related setup")
   (flycheck-add-mode 'html-tidy 'web-mode)
   (flycheck-select-checker 'html-tidy)
   (add-to-list (make-local-variable 'company-backends)
@@ -64,31 +62,18 @@
 
   )
 
+
 ;;
-;; vue
+;; vue, javascript
 ;;
-(defun my/web-vue-setup()
-  "Setup for vue related."
-  (message "in web vue setup")
+(defun my/web-js-setup()
+  "Setup for js related."
+  (message "web-mode use javascript related setup")
   (setup-tide-mode)
   (prettier-js-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-select-checker 'javascript-eslint)
   )
-
-;;
-;; javascript
-;;
-(defun my/web-jsx-setup()
-  "Setup for jsx related."
-  (setup-tide-mode)
-  (prettier-js-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-select-checker 'javascript-eslint)
-  ;;(flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
-  ;;(setq flycheck-disabled-checkers (append flycheck-disabled-checkers '(tsx-tide)))
-  )
-
 
 
 ;;
@@ -121,8 +106,6 @@
   (setq-default js2-basic-offset 2)
   )
 
-(use-package react-snippets
-  :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ;                 css                 ;
@@ -158,6 +141,17 @@
 
   )
 
+
+;;
+;; set emmet expand jsx only in rjsx-mode
+;;
+(use-package mode-local
+  :ensure t
+  :config
+  (setq-mode-local rjsx-mode emmet-expand-jsx-className? t)
+  (setq-mode-local web-mode emmet-expand-jsx-className? nil)
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ;                  js                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -169,6 +163,10 @@
   (setq-default js2-basic-offset 2)
   (setq-default js2-global-externs '("module" "require" "assert" "setInterval" "console" "__dirname__") )
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;              typescript             ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun setup-tide-mode ()
   "Setup tide mode for other mode."
@@ -186,6 +184,7 @@
 
 
 (add-hook 'js2-mode-hook #'setup-tide-mode)
+(add-hook 'rjsx-mode-hook #'setup-tide-mode)
 
 (use-package tide
   :ensure t
