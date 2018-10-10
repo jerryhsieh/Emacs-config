@@ -3,8 +3,8 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/org/blog.org")
- (front-context-string . "** new blog idea")
- (rear-context-string . "xelatex\n\n* Blog\n")
- (position . 634))
+ (filename . "~/org/gtd.org")
+ (front-context-string . "** TODO check ag")
+ (rear-context-string . "r\":%20Footer,]]\n")
+ (position . 838))
 )

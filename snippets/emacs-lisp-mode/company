@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: company
+# key: comp
+# --
+(message "test yasnippet vs company")

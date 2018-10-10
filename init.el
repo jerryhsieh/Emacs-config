@@ -109,14 +109,14 @@
 (use-package counsel
   :ensure t
   :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)))
+         ("\C-x \C-f" . counsel-find-file)))
 
 ;;
 ;; swiper
 ;;
 (use-package swiper
   :ensure t
-  :bind (("C-s" . swiper))
+  :bind (("\C-s" . swiper))
   )
 
 ;;
@@ -140,32 +140,37 @@
   (setq company-minimum-prefix-length 3)
   (setq company-backends
         '((company-files
+           company-yasnippet
            company-keywords
            company-capf
-           company-yasnippet
            )
           (company-abbrev company-dabbrev))))
 
-(add-hook 'emacs-lisp-mode-hook (lambda () (set (make-local-variable 'company-backends) '(company-elisp))))
-
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+                                  (add-to-list  (make-local-variable 'company-backends)
+                                                '(company-elisp))))
 
 ;;
 ;; change C-n C-p
 ;;
 (with-eval-after-load 'company
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  (define-key company-active-map (kbd "\C-n") #'company-select-next)
+  (define-key company-active-map (kbd "\C-p") #'company-select-previous)
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil))
+
 
 
 ;;
 ;; change company complete common
 ;;
+;; With this code, yasnippet will expand the snippet if company didn't complete the word
+;; replace company-complete-common with company-complete if you're using it
+;;
+
 (advice-add 'company-complete-common :before (lambda () (setq my-company-point (point))))
 (advice-add 'company-complete-common :after (lambda () (when (equal my-company-point (point))
                                                          (yas-expand))))
-
 
 ;;
 ;; flycheck
@@ -173,7 +178,7 @@
 
 (use-package flycheck
   :ensure t
-  :init
+  :config
   (global-flycheck-mode t)
   )
 
@@ -182,7 +187,7 @@
 ;;
 (use-package magit
   :ensure t
-  :bind (("C-x g" . magit-status))
+  :bind (("\C-x g" . magit-status))
   )
 
 
@@ -192,7 +197,7 @@
 (use-package projectile
   :ensure t
   :bind-keymap
-  ("C-c p" . projectile-command-map)
+  ("\C-c p" . projectile-command-map)
   :config
   (projectile-mode t)
   (setq projectile-completion-system 'ivy)
