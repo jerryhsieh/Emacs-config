@@ -25,7 +25,7 @@
 ;;; Code:
 (use-package web-mode
   :ensure t
-  :mode ("\\.html\\'" "\\.vue\\'" "\\.jsx\\'")
+  :mode ("\\.html\\'" "\\.vue\\'")
   :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -36,8 +36,7 @@
   (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "powderblue")
   (set-face-attribute 'web-mode-doctype-face nil :foreground "lightskyblue")
   (setq web-mode-content-types-alist
-        '(("vue" . "\\.vue\\'")
-          ("javascript" . "\\.jsx\\'")))
+        '(("vue" . "\\.vue\\'")))
   (use-package company-web
     :ensure t)
   (add-hook 'web-mode-hook (lambda()
