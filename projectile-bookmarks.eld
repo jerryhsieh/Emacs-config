@@ -1,1 +1,0 @@
-("~/Developer/Web/React/react-guide/" "~/.emacs.d/" "~/Developer/VM/chefdk/")
