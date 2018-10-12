@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: React#ClassComponents
+# key: rcc
+# --
+import React, { Component } from "react";
+
+class $1 extends Component {
+  render() {
+    return (
+      <div>
+      $0
+      </div>
+    )
+  }
+}
+
+export default $1;
