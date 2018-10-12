@@ -5,8 +5,10 @@
 /tramp
 elpa
 irony
-elpa
 .last-package-update-day
 bookmarks
 /custom-variables.el
 /projectile-bookmarks.eld
+games
+org-gcal
+.mc-lists.el
