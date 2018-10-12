@@ -1,8 +1,7 @@
 ;;; custom-variables.el --- custom variables         -*- lexical-binding: t; -*-
-
 ;; Copyright (C) 2018  Jerry Hsieh
-
 ;; Author: Jerry Hsieh <jerryhsieh@Jerryde-MacBook-Pro.local>
+
 ;; Keywords: lisp
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -34,6 +33,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
 <<<<<<< HEAD
+<<<<<<< HEAD
  '(org-agenda-files (quote ("~/org/gtd.org" "~/org/gcal.org")))
  '(package-selected-packages
    (quote
@@ -61,6 +61,13 @@
 >>>>>>> 64ed717... add ox-gfm for export markdown
 
 >>>>>>> 543d9bf... add react rjsx-mode
+=======
+ '(org-agenda-files (quote ("~/org/gtd.org")))
+ '(package-selected-packages
+   (quote
+    (ox-gfm clang-format rjsx-mode rxjs-mode org ox-reveal htmlize org-download org-bullets company-web go-rename go-guru go-eldoc company-go go-mode prettier-js tide js2-mode emmet-mode scss-mode web-mode py-autopep8 elpy company-jedi cmake-ide rtags irony-eldoc flycheck-irony company-irony company-irony-c-headers irony ag projectile magit flycheck company yasnippet-snippets yasnippet counsel ivy multiple-cursors auto-package-update diminish use-package))))
+
+>>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -8,11 +8,15 @@
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 <<<<<<< HEAD
+<<<<<<< HEAD
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 =======
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 
 >>>>>>> 0f2934e... add org-setup
+=======
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+>>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
 
 (package-initialize)
 
@@ -223,6 +227,7 @@
   )
 >>>>>>> 0f2934e... add org-setup
 
+
 (use-package autoinsert
   :ensure t
   :config
@@ -232,9 +237,13 @@
   (auto-insert-mode t)
 <<<<<<< HEAD
   (define-auto-insert "\\.org$" ["default-org.org" my/autoinsert-yas-expand])
+<<<<<<< HEAD
 =======
   (define-auto-insert "\\.org\\'" ["default-org.org" my/autoinsert-yas-expand])
 >>>>>>> 0f2934e... add org-setup
+=======
+
+>>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -261,6 +270,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
                                         ;                 ruby                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "~/.emacs.d/custom/ruby.el")

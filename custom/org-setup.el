@@ -46,8 +46,11 @@
 :ensure t
 )
 
+<<<<<<< HEAD
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 
+=======
+>>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
 (use-package ox-reveal
 :ensure t
 )

@@ -1,8 +1,6 @@
 <<<<<<< HEAD
 ;;; org.el --- org mode related                      -*- lexical-binding: t; -*-
-
 ;; Copyright (C) 2018  Jerry Hsieh
-
 ;; Author: Jerry Hsieh <jerryhsieh@Jerryde-MacBook-Pro.local>
 ;; Keywords: calendar, processes
 =======
@@ -13,6 +11,7 @@
 ;; Author: vagrant <vagrant@node4.onionstudio.com.tw>
 ;; Keywords: calendar, docs, files, languages
 >>>>>>> 0f2934e... add org-setup
+
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -33,12 +32,16 @@
 
 ;;; Code:
 <<<<<<< HEAD
+<<<<<<< HEAD
 (org-babel-load-file "~/org/Channel/emacs-org.org")
 
 =======
 
 (org-babel-load-file "~/.emacs.d/custom/org-setup.org")
 >>>>>>> 0f2934e... add org-setup
+=======
+(org-babel-load-file "~/.emacs.d/custom/org-setup.org")
+>>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
 
 
 (provide 'org)
