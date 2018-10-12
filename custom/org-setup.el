@@ -133,3 +133,7 @@
 (use-package ox-reveal
 :ensure t
 )
+
+(use-package ox-gfm
+:ensure t
+)
