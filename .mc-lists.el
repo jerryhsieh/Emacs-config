@@ -3,8 +3,11 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        emmet-expand-line
+        indent-for-tab-command
         org-cycle
         org-self-insert-command
+        web-mode-buffer-indent
         ))
 
 (setq mc/cmds-to-run-once
