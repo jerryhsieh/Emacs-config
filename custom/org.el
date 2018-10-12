@@ -22,7 +22,7 @@
 
 ;;; Code:
 
-(org-babel-load-file "~/org/Channel/emacs-org.org")
+(org-babel-load-file "~/.emacs.d/custom/org-setup.org")
 
 
 
