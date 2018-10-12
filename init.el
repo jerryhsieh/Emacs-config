@@ -7,16 +7,8 @@
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-<<<<<<< HEAD
-<<<<<<< HEAD
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-=======
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 
->>>>>>> 0f2934e... add org-setup
-=======
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
->>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
 
 (package-initialize)
 
@@ -218,14 +210,8 @@
 ;; auto insert
 ;;
 (defun my/autoinsert-yas-expand()
-<<<<<<< HEAD
   "replace text in yasnippet template"
   (yas-expand-snippet (buffer-string) (point-min) (point-max)))
-=======
-  "auto insert yasnippet"
-  (yas-expand-snippet (buffer-string) (point-min) (point-max))
-  )
->>>>>>> 0f2934e... add org-setup
 
 
 (use-package autoinsert
@@ -235,15 +221,7 @@
   (setq auto-insert-directory (locate-user-emacs-file "templates"))
   (add-hook 'find-file-hook 'auto-insert)
   (auto-insert-mode t)
-<<<<<<< HEAD
   (define-auto-insert "\\.org$" ["default-org.org" my/autoinsert-yas-expand])
-<<<<<<< HEAD
-=======
-  (define-auto-insert "\\.org\\'" ["default-org.org" my/autoinsert-yas-expand])
->>>>>>> 0f2934e... add org-setup
-=======
-
->>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -269,18 +247,11 @@
 (load "~/.emacs.d/custom/go.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> a84f844aa13198adfb6ee6375268647e58e8ea0f
                                         ;                 ruby                ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "~/.emacs.d/custom/ruby.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-=======
->>>>>>> 0f2934e... add org-setup
                                         ;                 org                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "~/.emacs.d/custom/org.el")
