@@ -24,45 +24,65 @@
 
 ;;; Code:
 
-(defvar my-ruby-close-brace-goto-close t)
+;; (defvar my-ruby-close-brace-goto-close t)
 
-(defun my-ruby-close-brace ( )
-  "replacement for ruby-electric-brace for the close brace"
-  (interactive)
-  (let ((p (point)))
-    (if my-ruby-close-brace-goto-close
-        (unless (search-forward "}" nil t)
-          (message "No close brace found")
-          (insert "}"))
-      (insert "}")
-      (save-excursion (if (search-forward "}" nil t)
-                          (delete-char -1))))))
+;; (defun my-ruby-close-brace ( )
+;;   "replacement for ruby-electric-brace for the close brace"
+;;   (interactive)
+;;   (let ((p (point)))
+;;     (if my-ruby-close-brace-goto-close
+;;         (unless (search-forward "}" nil t)
+;;           (message "No close brace found")
+;;           (insert "}"))
+;;       (insert "}")
+;;       (save-excursion (if (search-forward "}" nil t)
+;;                           (delete-char -1))))))
 
 (use-package ruby-mode
   :ensure t
-  :mode "\\.rb\\'"
+  :mode ("\\.rb\\'" "Rakefile\\'" "Gemfile\\'" "Berksfile\\'" "Vagrantfile\\'")
   :interpreter "ruby"
   :bind (:map ruby-mode-map
               ("}" . my-ruby-close-brace)
               ("\C-c r a" . rvm-activate-corresponding-ruby)
               ("\C-c r r" . inf-ruby))
   :config
-  (add-hook 'ruby-mode-hook (lambda()
+  (use-package rvm
+    :ensure t
+    :config
+    (rvm-use-default))
+  (add-hook 'ruby-mode-hook (lambda ()
                               (add-to-list (make-local-variable 'company-backends)
-                                           '(company-inf-ruby company-robe))))
-
+                                           '(company-robe))))
   )
 
+(use-package inf-ruby
+  :ensure t
+  :hook (ruby-mode . inf-ruby-minor-mode)
+  :config
+  )
 
 ;;
 ;; ruby electric mode
 ;;
 (use-package ruby-electric
   :ensure t
-  :after ruby-mode
-  :config
-  (add-hook 'ruby-mode-hook (lambda() (ruby-electric-mode t)))
+  :hook (ruby-mode . ruby-electric-mode)
   )
+
+;;
+;; robe
+;;
+(use-package robe
+  :ensure t
+  :hook (ruby-mode . robe-mode)
+  :bind ("C-M-." . robe-jump)
+  :config
+  (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
+    (rvm-activate-corresponding-ruby))
+  )
+
+
 
 
 ;;
@@ -71,7 +91,7 @@
 (use-package rubocop
   :ensure t
   :hook (ruby-mode . rubocop-mode)
-  :diminish rubocop-mode
+  ;;:diminish rubocop-mode
   )
 
 ;;
@@ -79,21 +99,17 @@
 ;;
 (use-package projectile-rails
   :ensure t
-  :after (ruby-mode projecttile)
   :hook (projectile-mode . projectile-rails-on)
   )
 
 ;;
-;; robe
+;; auto formatter
 ;;
-(use-package robe
+(use-package rufo
   :ensure t
-  :after ruby-mode
-  :hook (ruby-mode . robe-mode)
+  :hook (ruby-mode . rufo-minor-mode)
   )
 
-(defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
-  (rvm-activate-corresponding-ruby))
 
 (provide 'ruby)
 ;;; ruby.el ends here

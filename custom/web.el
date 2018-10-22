@@ -96,7 +96,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package rjsx-mode
   :ensure t
-  :mode ("\\.js\\'")
+  :mode ("\\.jsx\\'")
   :config
   (add-hook 'rjsx-mode-hook (lambda ()
                               (add-to-list (make-local-variable 'company-backends)
@@ -114,8 +114,9 @@
   :ensure t
   :mode "\\.css\\'"
   :config
-  (add-to-list (make-local-variable 'company-backends)
-               '(company-css company-files company-yasnippet company-capf))
+  (add-hook 'css-mode-hook (lambda()
+                             (add-to-list (make-local-variable 'company-backends)
+                                          '(company-css company-files company-yasnippet company-capf))))
   (setq css-indent-offset 2)
   (setq flycheck-stylelintrc "~/.stylelintrc")
   )
@@ -156,7 +157,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package js2-mode
   :ensure t
-  :mode (("\\.js2\\'" . js2-mode)
+  :mode (("\\.js\\'" . js2-mode)
          ("\\.json\\'" . javascript-mode))
   :init
   (setq-default js2-basic-offset 2)
