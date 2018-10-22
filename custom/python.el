@@ -18,6 +18,7 @@
   :config
   (setq indent-tabs-mode nil)
   (setq python-indent-offset 4)
+  (setq flycheck-flake8rc "~/.config/flake8")
   (use-package py-autopep8
     :ensure t
     :hook ((python-mode . py-autopep8-enable-on-save))
