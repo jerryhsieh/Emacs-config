@@ -33,6 +33,12 @@
   :hook ((csharp-mode . omnisharp-mode)
          (before-save . omnisharp-code-format-entire-file))
   :config
+  (local-set-key (kbd "\C-c o s") 'omnisharp-start-omnisharp-server)
+  (local-set-key (kbd "\C-c o j") 'omnisharp-go-to-definition)
+  (local-set-key (kbd "\C-c o w") 'omnisharp-go-to-definition-other-window)
+  (local-set-key (kbd "\C-c o f") 'omnisharp-find-usages)
+  (local-set-key (kbd "\C-c o i") 'omnisharp-current-type-information)
+  (local-set-key (kbd "\C-c o d") 'omnisharp-current-type-documentation)
   (add-hook 'omnisharp-mode-hook (lambda()
                                    (add-to-list (make-local-variable 'company-backends)
                                                 '(company-omnisharp))))
