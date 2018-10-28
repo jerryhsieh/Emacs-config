@@ -1,0 +1,14 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".typicode.com"
+  [url-cookie "__cfduid" "d0c46afcb867a023274e036d4b3762c7b1540591233" "Sat, 26-Oct-19 22:00:33 GMT" "/" ".typicode.com" nil]))
+)
+(setq url-cookie-secure-storage
+ 'nil)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

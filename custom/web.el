@@ -107,6 +107,8 @@
                               (my/use-eslint-from-node-modules)
                               (flycheck-select-checker 'javascript-eslint)
                               ))
+  (setq js2-basic-offset 2)
+  )
 
   )
 
@@ -163,8 +165,10 @@
   ;; :mode (("\\.js\\'" . js2-mode)
   ;;        ("\\.json\\'" . javascript-mode))
   :init
-  (setq-default js2-basic-offset 2)
-  (setq-default js2-global-externs '("module" "require" "assert" "setInterval" "console" "__dirname__") )
+  (setq indent-tabs-mode nil)
+  (setq js2-basic-offset 2)
+  (setq js-indent-level 2)
+  (setq js2-global-externs '("module" "require" "assert" "setInterval" "console" "__dirname__") )
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -213,7 +217,14 @@
   )
 
 
+;;
+;; restful client
+;;
 
+
+(use-package restclient
+  :ensure t
+  )
 
 (provide 'web)
 ;;; web.el ends here
