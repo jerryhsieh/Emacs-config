@@ -99,16 +99,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package rjsx-mode
   :ensure t
-  :mode ("\\.jsx\\'")
+  :mode ("\\.js\\'")
   :config
-  (add-hook 'rjsx-mode-hook (lambda ()
-                              (add-to-list (make-local-variable 'company-backends)
-                                           '(company-files company-tide))
+  (setq js2-basic-offset 2)
+  (add-hook 'rjsx-mode-hook (lambda()
+                              (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+                              (my/use-eslint-from-node-modules)
+                              (flycheck-select-checker 'javascript-eslint)
                               ))
-  (setq-default js2-basic-offset 2)
+
   )
 
-
+(use-package react-snippets
+  :ensure t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ;                 css                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -144,24 +147,21 @@
 
   )
 
-
-;;
-;; set emmet expand jsx only in rjsx-mode
-;;
 (use-package mode-local
   :ensure t
   :config
   (setq-mode-local rjsx-mode emmet-expand-jsx-className? t)
-  (setq-mode-local web-mode emmet-expand-jsx-className? nil)
+  (setq-mode-local web-mode emmet-expand-jsx-className? nil)  
   )
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                                         ;                  js                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package js2-mode
   :ensure t
-  :mode (("\\.js\\'" . js2-mode)
-         ("\\.json\\'" . javascript-mode))
+  ;; :mode (("\\.js\\'" . js2-mode)
+  ;;        ("\\.json\\'" . javascript-mode))
   :init
   (setq-default js2-basic-offset 2)
   (setq-default js2-global-externs '("module" "require" "assert" "setInterval" "console" "__dirname__") )
@@ -187,7 +187,10 @@
 
 
 (add-hook 'js2-mode-hook #'setup-tide-mode)
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
 (add-hook 'rjsx-mode-hook #'setup-tide-mode)
+
+
 
 (use-package tide
   :ensure t
