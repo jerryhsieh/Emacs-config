@@ -222,6 +222,9 @@
   (add-hook 'find-file-hook 'auto-insert)
   (auto-insert-mode t)
   (define-auto-insert "\\.org$" ["default-org.org" my/autoinsert-yas-expand])
+  (define-auto-insert "\\.js$" ["default-js.js" my/autoinsert-yas-expand])
+  (define-auto-insert "\\.ts$" ["default-ts.ts" my/autoinsert-yas-expand])
+  (define-auto-insert "\\.html?$" ["default-html.html" my/autoinsert-yas-expand])
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
