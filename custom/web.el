@@ -42,8 +42,8 @@
   (add-hook 'web-mode-hook (lambda()
                              (cond ((equal web-mode-content-type "html")
                                     (my/web-html-setup))
-                                   ((member web-mode-content-type '("vue", "javascript"))
-                                    (my/web-js-setup))
+                                   ((member web-mode-content-type '("vue"))
+                                    (my/web-vue-setup))
                                    )))
   )
 
@@ -63,15 +63,18 @@
 
 
 ;;
-;; vue, javascript
+;; web-mode for vue
 ;;
-(defun my/web-js-setup()
+(defun my/web-vue-setup()
   "Setup for js related."
-  (message "web-mode use javascript related setup")
+  (message "web-mode use vue related setup")
   (setup-tide-mode)
   (prettier-js-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-select-checker 'javascript-eslint)
+  (my/use-eslint-from-node-modules)
+  (add-to-list (make-local-variable 'company-backends)
+               '(comany-tide company-web-html company-css company-files))
   )
 
 
