@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: mmb
+# key: mmb
+# --
+@media screen and (max-width: 767px) {
+       $0       
+}

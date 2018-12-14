@@ -207,10 +207,12 @@
 (use-package prettier-js
   :ensure t
   :hook ((js2-mode . prettier-js-mode)
-         (typescript-mode . prettier-js-mode))
+         (typescript-mode . prettier-js-mode)
+         (css-mode . prettier-js-mode)
+         (web-mode . prettier-js-mode))
   :config
   (setq prettier-js-args '(
-                           "--trailing-comma" "all"
+                           "--trailing-comma" "es5"
                            "--bracket-spacing" "false"
                            ))
   )
