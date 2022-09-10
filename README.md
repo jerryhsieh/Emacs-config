@@ -1,7 +1,7 @@
 # Emacs-config
 emacs configuration setup step by step
 
-## copy init.el to your ~/.emacs.d/
+## git clone https://github.com/jerryhsieh/Emacs-config.git .emacs.d
 ## run emacs
 
 Please note that there might be additional backend package to be installed
